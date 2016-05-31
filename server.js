@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -47,6 +47,13 @@ app.get('/api', function api_index(req, res) {
       {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
     ]
   })
+});
+
+app.get('/api/profile', function(req, res){
+  db.Profile.find(function(err, profile){
+    if(err){return console.log("index error:" + err);}
+    res.json(profile);
+  });
 });
 
 /**********
